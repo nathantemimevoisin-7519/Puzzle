@@ -14,6 +14,7 @@ for (let y = 0; y < size; y++) { //ligne
         const piece = document.createElement("div");
         piece.classList.add("piece");
 
+        piece.setAttribute("data-index", i)
         // mettre bon endroit de l'image
         piece.style.backgroundPosition = `-${x * pieceSize}px -${y * pieceSize}px`;
 
@@ -49,6 +50,7 @@ for (let y = 0; y < size; y++) { //ligne
             document.onmouseup = function () {
                 document.removeEventListener("mousemove", onMouseMove);
                 document.onmouseup = null;
+                testPiece(piece)
             };
         };
 
@@ -58,4 +60,20 @@ for (let y = 0; y < size; y++) { //ligne
         pieces.push(piece);
 
     }
+}
+function testPiece(piece) {
+    const i = +piece.getAttribute("data-index");
+    const x = Math.round((piece.style.left).substring(0, (piece.style.left).length - 3) / 100);
+    const y = Math.round((piece.style.top).substring(0, (piece.style.top).length - 3) / 100)
+    const casE = x + 3 * y + 1
+    let bCase = 0
+    if (casE == i) {
+        bCase = 1
+    }
+    console.log('test', { i, x, y, casE, bCase })
+    return bCase
+
+}
+function testGrille() {
+    x = 2 * 3
 }
