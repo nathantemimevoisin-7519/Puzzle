@@ -4,7 +4,7 @@ const pieceSize = 100;
 let pieces = [];
 let zCompteur = 0
 let i = 0
-const snapX = 100
+const snapX = 33.33
 const snapY = snapX
 //on créé les pièces
 for (let y = 0; y < size; y++) { //ligne
