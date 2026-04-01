@@ -7,9 +7,9 @@ let i = 0
 const snapX = 33.33
 const snapY = snapX
 
-const mot = "bon anniversaire"
-let lettreAaffich = ["b", "o", "n", "a", "i", "v", "e", "r", "s"]
-let lettreDejAffich = []
+const mot = "Bon anniversaire"
+let lettreAaffich = ["B", "o", "n", "a", "i", "v", "e", "r", "s"]
+let lettreDejAffich = [" "]
 
 images = ["url('lucieCGenial2.jpg')", "url('lucieCGenial.jpg')", "url('logo.jpg')"]
 let numTour = 0
