@@ -23,7 +23,6 @@ function createPieces(nomImg) {
         puzzle.removeChild(a)
     }
     let i = 0
-    //puzzle.getElementsByClassName("piece").remove()
     numTour += 1
     for (let y = 0; y < size; y++) { //ligne
         for (let x = 0; x < size; x++) { //colonne
@@ -102,22 +101,28 @@ function testGrille() {
     const result = true; //pieces.every(function (p) { return testPiece(p); })
     console.log('test', { result })
     if (result == true) {
-        alert("Vous avez réussi le puzzle")
+        alert("Vous avez réussi le puzzle !! Vous avez gagné une lettre du mot secret et une image pour votre collection !!");
 
-        lettreDejAffich += lettreAaffich[numTour - 1]
-        let motAffich = ""
+        lettreDejAffich += lettreAaffich[numTour - 1];
+        let motAffich = "";
         for (let j = 0; j < mot.length; j++) {
             if (lettreDejAffich.indexOf(mot[j]) != -1) {
-                motAffich += mot[j]
+                motAffich += mot[j];
             }
             else {
                 motAffich += '_'
             }
         }
-        document.getElementById("motSecret").innerHTML = motAffich
+        document.getElementById("motSecret").innerHTML = motAffich;
+
+        const photo = document.createElement("div");
+        photo.classList.add("photo");
+        photo.style.backgroundImage = (images[numTour - 1])
+        document.getElementById("photos").appendChild(photo);
 
         document.getElementById("puzzle").style.backgroundImage = images[numTour];
-        createPieces(images[numTour])
+        createPieces(images[numTour]);
+
 
     }
 }

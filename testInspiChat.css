@@ -20,3 +20,10 @@
 #photos {
     background-color: blueviolet;
 }
+
+.photo {
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    border: 3px solid salmon
+}
