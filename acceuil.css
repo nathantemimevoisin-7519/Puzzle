@@ -1,0 +1,31 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#titre{
+    font-size: 75px;
+}
+
+#btnJouer{
+    background-color: rebeccapurple;
+    color:cadetblue;
+    cursor: pointer;
+    border:none;
+    font-size: 16px;
+}
+#coll{
+    border: none;
+    color: palevioletred;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+    
+img{
+    border-radius: 30px;
+}
+#pendu{
+    background-color: blanchedalmond;
+}

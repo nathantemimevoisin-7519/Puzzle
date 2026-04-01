@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title> PUZZLE </title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>PUZZLE</h1>
+    </body>
+    <script>
+        
+        function decoupe(){
+            //document.write("nj")
+            var img_path = 'montagne.jpg'; 
+            var img = new Image();
+
+            img.onload=function()
+            {
+                var min  = Math.min( img.width, img.height );
+                var size = Math.floor( min / 3 );
+
+                var i;
+                var div;
+                var row;
+                var col;
+
+                var container = document.createElement('div');
+
+                for ( i = 0; i < 9; i += 1 )
+                {
+                    div = document.createElement('div');
+                
+                    div.style.width  = size + 'px';
+                    div.style.height = size + 'px';
+                    
+                    div.style.backgroundImage = img_path;
+
+                    row = ( i % 3 );
+                    col = Math.floor( i / 3 );
+
+                    //document.writeln(row,col)
+
+
+                    div.style.backgroundPosition =   - row * size + 'px ' + - col * size + 'px';
+
+                    div.style.float = 'left';
+                    
+                    if ( !row ) 
+                    {
+                        div.style.clear = 'left';
+                    }
+
+                    container.appendChild( div );
+                }
+                document.body.appendChild( container );
+            };
+            img.src = img_path;
+        };
+        window.addEventListener("load",decoupe);
+        
+    </script>
+</html>
