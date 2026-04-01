@@ -3,7 +3,6 @@ const size = 3; // 3x3
 const pieceSize = 100;
 let pieces = [];
 let zCompteur = 0
-let i = 0
 const snapX = 33.33
 const snapY = snapX
 
@@ -18,6 +17,13 @@ document.getElementById("testGrille").onclick = testGrille;
 
 //on créé les pièces
 function createPieces(nomImg) {
+    const tab = [...puzzle.getElementsByClassName("piece")]
+    for (a of tab) {
+        console.log("entreeBouclSupp", { a })
+        puzzle.removeChild(a)
+    }
+    let i = 0
+    //puzzle.getElementsByClassName("piece").remove()
     numTour += 1
     for (let y = 0; y < size; y++) { //ligne
         for (let x = 0; x < size; x++) { //colonne
@@ -112,5 +118,6 @@ function testGrille() {
 
         document.getElementById("puzzle").style.backgroundImage = images[numTour];
         createPieces(images[numTour])
+
     }
 }
