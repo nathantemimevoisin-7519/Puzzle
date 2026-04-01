@@ -1,3 +1,9 @@
+body {
+    display: grid;
+    grid-template-columns: 5% 10% auto 20% 5%;
+    grid-template-rows: 10% 5% auto 5% 5% 20%;
+}
+
 .piece {
     position: absolute;
     width: 100px;
@@ -15,15 +21,37 @@
     background-size: 300px 300px;
     background-color: rgba(255, 255, 255, 0.5);
     background-blend-mode: lighten;
+    grid-column: 2/3;
+    grid-row: 3;
 }
 
 #photos {
-    background-color: blueviolet;
+    background-color: gray;
+    grid-column: 4;
+    grid-row: 2/5;
 }
 
 .photo {
     width: 100px;
     height: 100px;
     background-size: contain;
-    border: 3px solid salmon
+    border: 1px solid snow
+}
+
+button {
+    color: aliceblue;
+    grid-column: 2;
+    grid-row: 4;
+}
+
+#titre {
+    color: aquamarine;
+    grid-column: 3;
+    grid-row: 1;
+}
+
+#mot {
+    color: rgb(28, 129, 129);
+    grid-column: 2/3;
+    grid-row: 6;
 }
