@@ -6,6 +6,9 @@ let zCompteur = 0
 let i = 0
 const snapX = 33.33
 const snapY = snapX
+
+document.getElementById("testGrille").onclick = testGrille;
+
 //on créé les pièces
 for (let y = 0; y < size; y++) { //ligne
     for (let x = 0; x < size; x++) { //colonne
@@ -74,6 +77,12 @@ function testPiece(piece) {
     return bCase
 
 }
+
+
 function testGrille() {
-    x = 2 * 3
+    const result = pieces.every(function (p) { return testPiece(p); })
+    console.log('test', { result })
+    if (result == true) {
+        alert("Vous avez réussi le puzzle")
+    }
 }
