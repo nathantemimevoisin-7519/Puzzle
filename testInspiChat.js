@@ -7,68 +7,81 @@ let i = 0
 const snapX = 33.33
 const snapY = snapX
 
+const mot = "bon anniversaire"
+let lettreAaffich = ["b", "o", "n", "a", "i", "v", "e", "r", "s"]
+let lettreDejAffich = []
+
+images = ["url('lucieCGenial2.jpg')", "url('lucieCGenial.jpg')", "url('logo.jpg')"]
+let numTour = 0
+
 document.getElementById("testGrille").onclick = testGrille;
 
 //on créé les pièces
-for (let y = 0; y < size; y++) { //ligne
-    for (let x = 0; x < size; x++) { //colonne
-        console.log(i)
-        i += 1
-        const piece = document.createElement("div");
-        piece.classList.add("piece");
+function createPieces(nomImg) {
+    numTour += 1
+    for (let y = 0; y < size; y++) { //ligne
+        for (let x = 0; x < size; x++) { //colonne
+            console.log(i)
+            const piece = document.createElement("div");
+            piece.classList.add("piece");
 
-        piece.setAttribute("data-index", i)
-        // mettre bon endroit de l'image
-        piece.style.backgroundPosition = `-${x * pieceSize}px -${y * pieceSize}px`;
+            piece.setAttribute("data-index", i)
+            i += 1
+            // mettre bon endroit de l'image
+            piece.style.backgroundImage = (nomImg)
+            piece.style.backgroundPosition = `-${x * pieceSize}px -${y * pieceSize}px`;
 
-        //forme pièce ==> à voir si on modifie plus tard
-        //piece.style.clipPath = "polygon(0 0, 100% 0, 100% 100%, 0 100%)";
+            //forme pièce ==> à voir si on modifie plus tard
+            //piece.style.clipPath = "polygon(0 0, 100% 0, 100% 100%, 0 100%)";
 
-        // Position mélangée
-        piece.style.left = `${Math.random() * 200 + 300}px`;
-        piece.style.top = `${Math.random() * 200}px`;
+            // Position mélangée
+            piece.style.left = `${Math.random() * 200 + 300}px`;
+            piece.style.top = `${Math.random() * 200}px`;
 
-        piece.onmousedown = function (e) {
-            piece.style.zIndex = ++zCompteur
-            let shiftX = e.clientX - piece.getBoundingClientRect().left;
-            let shiftY = e.clientY + 120 - piece.getBoundingClientRect().top;
+            piece.onmousedown = function (e) {
+                piece.style.zIndex = ++zCompteur
+                let shiftX = e.clientX - piece.getBoundingClientRect().left;
+                let shiftY = e.clientY + 120 - piece.getBoundingClientRect().top;
 
-            function moveAt(pageX, pageY) {
-                let x = pageX - shiftX
-                let y = pageY - shiftY
-                if (x < 300) {
-                    x = Math.round(x / snapX) * snapX
-                    y = Math.round(y / snapY) * snapY
+                function moveAt(pageX, pageY) {
+                    let x = pageX - shiftX
+                    let y = pageY - shiftY
+                    if (x < 300) {
+                        x = Math.round(x / snapX) * snapX
+                        y = Math.round(y / snapY) * snapY
+                    }
+                    piece.style.left = x + "px";
+                    piece.style.top = y + "px";
                 }
-                piece.style.left = x + "px";
-                piece.style.top = y + "px";
-            }
 
-            function onMouseMove(e) {
-                moveAt(e.pageX, e.pageY);
-            }
+                function onMouseMove(e) {
+                    moveAt(e.pageX, e.pageY);
+                }
 
-            document.addEventListener("mousemove", onMouseMove);
+                document.addEventListener("mousemove", onMouseMove);
 
-            document.onmouseup = function () {
-                document.removeEventListener("mousemove", onMouseMove);
-                document.onmouseup = null;
-                testPiece(piece)
+                document.onmouseup = function () {
+                    document.removeEventListener("mousemove", onMouseMove);
+                    document.onmouseup = null;
+                    testPiece(piece)
+                };
             };
-        };
 
-        piece.ondragstart = () => false;
+            piece.ondragstart = () => false;
 
-        puzzle.appendChild(piece);
-        pieces.push(piece);
+            puzzle.appendChild(piece);
+            pieces.push(piece);
 
+        }
     }
 }
+createPieces(images[0])
+
 function testPiece(piece) {
     const i = +piece.getAttribute("data-index");
     const x = Math.round((piece.style.left).substring(0, (piece.style.left).length - 3) / 100);
     const y = Math.round((piece.style.top).substring(0, (piece.style.top).length - 3) / 100)
-    const casE = x + 3 * y + 1
+    const casE = x + 3 * y
     let bCase = 0
     if (casE == i) {
         bCase = 1
@@ -80,9 +93,24 @@ function testPiece(piece) {
 
 
 function testGrille() {
-    const result = pieces.every(function (p) { return testPiece(p); })
+    const result = true; //pieces.every(function (p) { return testPiece(p); })
     console.log('test', { result })
     if (result == true) {
         alert("Vous avez réussi le puzzle")
+
+        lettreDejAffich += lettreAaffich[numTour - 1]
+        let motAffich = ""
+        for (let j = 0; j < mot.length; j++) {
+            if (lettreDejAffich.indexOf(mot[j]) != -1) {
+                motAffich += mot[j]
+            }
+            else {
+                motAffich += '_'
+            }
+        }
+        document.getElementById("motSecret").innerHTML = motAffich
+
+        document.getElementById("puzzle").style.backgroundImage = images[numTour];
+        createPieces(images[numTour])
     }
 }
