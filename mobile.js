@@ -45,6 +45,7 @@ function createPieces(nomImg) {
 
 
             piece.onpointerdown = function (e) {
+                let pieceT = true
                 piece.style.zIndex = ++zCompteur
                 piece.style.border = "3px solid green"
                 console.log("vert")
@@ -55,19 +56,23 @@ function createPieces(nomImg) {
                 console.log("piece", { x, y })
 
                 puzzle.onpointerdown = function (e) {
-                    let x = e.clientX
-                    let y = e.clientY
-                    //let shiftX = x + 80 - piece.getBoundingClientRect().left;
-                    //let shiftY = y + 100 - piece.getBoundingClientRect().top;
+                    console.log("test", { pieceT })
+                    if (pieceT != true) {
+                        let x = e.clientX
+                        let y = e.clientY
+                        //let shiftX = x + 80 - piece.getBoundingClientRect().left;
+                        //let shiftY = y + 100 - piece.getBoundingClientRect().top;
 
-                    //console.log("puzzle1", { x, y, snapX, snapY })
-                    x = Math.round((x) / snapX) * snapX
-                    y = Math.round((y) / snapY) * snapY
-                    //console.log("puzzle2", { x, y })
-                    piece.style.left = x - 100 + "px";
-                    piece.style.top = y - 100 + "px";
-                    piece.style.border = "1px solid white"
-                    console.log("blanc")
+                        //console.log("puzzle1", { x, y, snapX, snapY })
+                        x = Math.round((x) / snapX) * snapX
+                        y = Math.round((y) / snapY) * snapY
+                        //console.log("puzzle2", { x, y })
+                        piece.style.left = x - 100 + "px";
+                        piece.style.top = y - 100 + "px";
+                        piece.style.border = "1px solid white"
+                        console.log("blanc")
+                    }
+                    pieceT = false
                 }
             };
 
