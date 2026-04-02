@@ -43,10 +43,10 @@ function createPieces(nomImg) {
             piece.style.left = `${Math.random() * 200 + 300}px`;
             piece.style.top = `${Math.random() * 200}px`;
 
-            piece.onmousedown = function (e) {
+            piece.onpointerdown = function (e) {
                 piece.style.zIndex = ++zCompteur
-                let shiftX = e.clientX - piece.getBoundingClientRect().left;
-                let shiftY = e.clientY + 120 - piece.getBoundingClientRect().top;
+                let shiftX = e.clientX + 80 - piece.getBoundingClientRect().left;
+                let shiftY = e.clientY + 100 - piece.getBoundingClientRect().top;
 
                 function moveAt(pageX, pageY) {
                     let x = pageX - shiftX
@@ -59,15 +59,15 @@ function createPieces(nomImg) {
                     piece.style.top = y + "px";
                 }
 
-                function onMouseMove(e) {
+                function onpointermove(e) {
                     moveAt(e.pageX, e.pageY);
                 }
 
-                document.addEventListener("mousemove", onMouseMove);
+                document.addEventListener("mousemove", onpointermove);
 
-                document.onmouseup = function () {
-                    document.removeEventListener("mousemove", onMouseMove);
-                    document.onmouseup = null;
+                document.onpointerup = function () {
+                    document.removeEventListener("mousemove", onpointermove);
+                    document.onpointerup = null;
                     testPiece(piece)
                 };
             };
