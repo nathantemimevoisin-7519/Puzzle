@@ -60,13 +60,14 @@ function createPieces(nomImg) {
                 }
 
                 function onpointermove(e) {
-                    moveAt(e.pageX, e.pageY);
+                    const { pageX, pageY } = e
+                    moveAt(pageX, pageY);
                 }
 
-                document.addEventListener("mousemove", onpointermove);
+                document.addEventListener("pointermove", onpointermove);
 
                 document.onpointerup = function () {
-                    document.removeEventListener("mousemove", onpointermove);
+                    document.removeEventListener("pointermove", onpointermove);
                     document.onpointerup = null;
                     testPiece(piece)
                 };
