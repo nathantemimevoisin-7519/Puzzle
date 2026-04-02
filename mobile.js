@@ -3,7 +3,7 @@ const size = 3; // 3x3
 const pieceSize = 100;
 let pieces = [];
 let zCompteur = 0
-const snapX = 33.33
+const snapX = 100//33.33
 const snapY = snapX
 
 const mot = "Bon anniversaire"
@@ -43,13 +43,32 @@ function createPieces(nomImg) {
             piece.style.left = `${Math.random() * 200 + 300}px`;
             piece.style.top = `${Math.random() * 200}px`;
 
+            puzzle.onpointerdown = function (e) {
+                let x = e.clientX
+                let y = e.clientY
+                let shiftX = x + 80 - piece.getBoundingClientRect().left;
+                let shiftY = y + 100 - piece.getBoundingClientRect().top;
+
+                console.log("puzzle1", { x, y, snapX, snapY })
+                x = Math.round((x) / snapX) * snapX
+                y = Math.round((y) / snapY) * snapY
+                console.log("puzzle2", { x, y })
+                piece.style.left = x - 100 + "px";
+                piece.style.top = y - 100 + "px";
+            }
             piece.onpointerdown = function (e) {
                 piece.style.zIndex = ++zCompteur
                 piece.style.border = "3px solid green"
-                let shiftX = e.clientX + 80 - piece.getBoundingClientRect().left;
-                let shiftY = e.clientY + 100 - piece.getBoundingClientRect().top;
+                const x = e.clientX
+                const y = e.clientY
+
+                let shiftX = x + 80 - piece.getBoundingClientRect().left;
+                let shiftY = y + 100 - piece.getBoundingClientRect().top;
+                console.log("piece", { x, y })
+
 
                 function moveAt(pageX, pageY) {
+                    console.log("page", { pageX, pageY, shiftX })
                     let x = pageX - shiftX
                     let y = pageY - shiftY
                     if (x < 300) {
