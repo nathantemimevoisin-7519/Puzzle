@@ -43,55 +43,32 @@ function createPieces(nomImg) {
             piece.style.left = `${Math.random() * 200 + 300}px`;
             piece.style.top = `${Math.random() * 200}px`;
 
-            puzzle.onpointerdown = function (e) {
-                let x = e.clientX
-                let y = e.clientY
-                let shiftX = x + 80 - piece.getBoundingClientRect().left;
-                let shiftY = y + 100 - piece.getBoundingClientRect().top;
 
-                console.log("puzzle1", { x, y, snapX, snapY })
-                x = Math.round((x) / snapX) * snapX
-                y = Math.round((y) / snapY) * snapY
-                console.log("puzzle2", { x, y })
-                piece.style.left = x - 100 + "px";
-                piece.style.top = y - 100 + "px";
-            }
             piece.onpointerdown = function (e) {
                 piece.style.zIndex = ++zCompteur
                 piece.style.border = "3px solid green"
+                console.log("vert")
                 const x = e.clientX
                 const y = e.clientY
-
-                let shiftX = x + 80 - piece.getBoundingClientRect().left;
-                let shiftY = y + 100 - piece.getBoundingClientRect().top;
+                //let shiftX = x + 80 - piece.getBoundingClientRect().left;
+                //let shiftY = y + 100 - piece.getBoundingClientRect().top;
                 console.log("piece", { x, y })
 
+                puzzle.onpointerdown = function (e) {
+                    let x = e.clientX
+                    let y = e.clientY
+                    //let shiftX = x + 80 - piece.getBoundingClientRect().left;
+                    //let shiftY = y + 100 - piece.getBoundingClientRect().top;
 
-                function moveAt(pageX, pageY) {
-                    console.log("page", { pageX, pageY, shiftX })
-                    let x = pageX - shiftX
-                    let y = pageY - shiftY
-                    if (x < 300) {
-                        x = Math.round(x / snapX) * snapX
-                        y = Math.round(y / snapY) * snapY
-                    }
-                    piece.style.left = x + "px";
-                    piece.style.top = y + "px";
-                }
-
-                function onpointermove(e) {
-                    const { pageX, pageY } = e
-                    moveAt(pageX, pageY);
-                }
-
-                document.addEventListener("pointermove", onpointermove);
-
-                document.onpointerup = function () {
-                    document.removeEventListener("pointermove", onpointermove);
-                    document.onpointerup = null;
-                    testPiece(piece)
+                    //console.log("puzzle1", { x, y, snapX, snapY })
+                    x = Math.round((x) / snapX) * snapX
+                    y = Math.round((y) / snapY) * snapY
+                    //console.log("puzzle2", { x, y })
+                    piece.style.left = x - 100 + "px";
+                    piece.style.top = y - 100 + "px";
                     piece.style.border = "1px solid white"
-                };
+                    console.log("blanc")
+                }
             };
 
             piece.ondragstart = () => false;
@@ -148,3 +125,32 @@ function testGrille() {
 
     }
 }
+
+
+/*
+function moveAt(pageX, pageY) {
+    console.log("page", { pageX, pageY, shiftX })
+    let x = pageX - shiftX
+    let y = pageY - shiftY
+    if (x < 300) {
+        x = Math.round(x / snapX) * snapX
+        y = Math.round(y / snapY) * snapY
+    }
+    piece.style.left = x + "px";
+    piece.style.top = y + "px";
+}
+
+function onpointermove(e) {
+    const { pageX, pageY } = e
+    moveAt(pageX, pageY);
+}
+ 
+document.addEventListener("pointermove", onpointermove);
+
+document.onpointerup = function () {
+    document.removeEventListener("pointermove", onpointermove);
+    document.onpointerup = null;
+    testPiece(piece)
+    piece.style.border = "1px solid white"
+};
+*/
