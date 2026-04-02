@@ -50,7 +50,6 @@ body {
 }
 
 button {
-    color: aliceblue;
     grid-column: 2;
     grid-row: 4;
 }

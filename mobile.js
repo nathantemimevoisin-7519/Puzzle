@@ -127,6 +127,19 @@ function testGrille() {
         document.getElementById("puzzle").style.backgroundImage = images[numTour];
         createPieces(images[numTour]);
 
+        photo.onpointerdown = function (e) {
+            photo.style.border = "3px double"
+            let photoT = true
+
+            document.onpointerdown = function (e) {
+                console.log('ge', { photoT })
+                if (photoT != true) {
+                    photo.style.border = "1px dotted"
+                }
+                photoT = false
+            }
+        }
+
 
     }
 }
