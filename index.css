@@ -17,11 +17,11 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    background-image: url("lucieCGenial2.jpg");
+    background-image: url("lucienathan.jpg");
     background-size: 300px 300px;
     background-color: rgba(255, 255, 255, 0.5);
     background-blend-mode: lighten;
-    grid-column: 2/3;
+    grid-column: 2/4;
     grid-row: 3;
 }
 
@@ -29,7 +29,6 @@ body {
     grid-column: 3;
     grid-row: 2/4;
     align-items: center;
-    z-index: 8099;
 }
 
 #collect {
@@ -59,19 +58,20 @@ body {
 button {
     grid-column: 2;
     grid-row: 4;
+    font-family: 'Montserrat';
 }
 
 #titre {
-    color: aquamarine;
     grid-column: 3;
     grid-row: 1;
+    font-family: 'Fredoka', 'Trebuchet MS'
 }
 
 #mot {
-    color: rgb(28, 129, 129);
     grid-column: 2/4;
     grid-row: 7;
     font-size: 1.3em;
+    font-family: 'Open Sans';
 }
 
 #motSecret {

@@ -10,7 +10,7 @@ const mot = "Bon anniversaire"
 let lettreAaffich = ["B", "o", "n", "a", "i", "v", "e", "r", "s"]
 let lettreDejAffich = [" "]
 
-images = ["url('lucieCGenial2.jpg')", "url('lucieCGenial.jpg')", "url('logo.jpg')"]
+images = ["url('lucienathan.jpg')", "url('lucienathan2.jpg')", "url('lucieCGenial2.jpg')", "url('lucieCGenial.jpg')", "url('logo.jpg')", "url('luciepdp.jpg')"]
 let numTour = 0
 
 document.getElementById("testGrille").onclick = testGrille;
@@ -42,7 +42,11 @@ function createPieces(nomImg) {
             // Position mélangée
             piece.style.left = `${Math.random() * 200 + 300}px`;
             piece.style.top = `${Math.random() * 200}px`;
-
+            console.log('piece', { piece })
+            console.log('puzzle', { puzzle })
+            document.getElementById("puzzle").onpointerdown = function (e) {
+                console.log('ooo')
+            }
 
             piece.onpointerdown = function (e) {
                 let pieceT = true
@@ -140,6 +144,7 @@ function testGrille() {
             ph.style.height = '300px'
             //ph.style.backgroundColor = "grey"
             ph.style.backgroundImage = photo.style.backgroundImage
+            document.getElementById("afficheIm").style.zIndex = 5683
             document.getElementById("afficheIm").appendChild(ph);
 
             console.log("afficher", { ph })
@@ -150,6 +155,7 @@ function testGrille() {
                 console.log('ge', { photoT })
                 if (photoT != true) {
                     //console.log('entree boucle')
+                    document.getElementById("afficheIm").style.zIndex = -1
                     document.getElementById("afficheIm").removeChild(ph)
                     photo.style.border = "1px dotted"
                     photo.style.width = '100px'
