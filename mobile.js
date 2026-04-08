@@ -128,13 +128,33 @@ function testGrille() {
         createPieces(images[numTour]);
 
         photo.onpointerdown = function (e) {
+            console.log(photo.style.backgroundImage)
+
             photo.style.border = "3px double"
+            //photo.style.width = '200px'
+            //photo.style.height = '200px'
+
+            const ph = document.createElement("div");
+            ph.classList.add("ph");
+            ph.style.width = '300px'
+            ph.style.height = '300px'
+            //ph.style.backgroundColor = "grey"
+            ph.style.backgroundImage = photo.style.backgroundImage
+            document.getElementById("puzzle").appendChild(ph);
+
+            console.log("afficher", { ph })
+
             let photoT = true
 
             document.onpointerdown = function (e) {
                 console.log('ge', { photoT })
                 if (photoT != true) {
+                    //console.log('entree boucle')
+                    document.getElementById("puzzle").removeChild(ph)
                     photo.style.border = "1px dotted"
+                    photo.style.width = '100px'
+                    photo.style.height = '100px'
+
                 }
                 photoT = false
             }
