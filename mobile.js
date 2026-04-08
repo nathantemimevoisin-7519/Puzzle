@@ -140,7 +140,7 @@ function testGrille() {
             ph.style.height = '300px'
             //ph.style.backgroundColor = "grey"
             ph.style.backgroundImage = photo.style.backgroundImage
-            document.getElementById("puzzle").appendChild(ph);
+            document.getElementById("afficheIm").appendChild(ph);
 
             console.log("afficher", { ph })
 
@@ -150,7 +150,7 @@ function testGrille() {
                 console.log('ge', { photoT })
                 if (photoT != true) {
                     //console.log('entree boucle')
-                    document.getElementById("puzzle").removeChild(ph)
+                    document.getElementById("afficheIm").removeChild(ph)
                     photo.style.border = "1px dotted"
                     photo.style.width = '100px'
                     photo.style.height = '100px'
