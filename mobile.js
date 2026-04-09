@@ -15,9 +15,6 @@ let numTour = 0
 
 document.getElementById("testGrille").onclick = testGrille;
 
-
-
-
 //on créé les pièces
 function createPieces(nomImg) {
     const tab = [...puzzle.getElementsByClassName("piece")]
@@ -109,11 +106,11 @@ function testPiece(piece) {
 
 
 function testGrille() {
+    fin()
     const result = true; //pieces.every(function (p) { return testPiece(p); })
     console.log('test', { result })
     if (result == true) {
         alert("Vous avez réussi le puzzle !! Vous avez gagné une lettre du mot secret et une image pour votre collection !!");
-
         lettreDejAffich += lettreAaffich[numTour - 1];
         let motAffich = "";
         for (let j = 0; j < mot.length; j++) {
@@ -134,6 +131,11 @@ function testGrille() {
         document.getElementById("puzzle").style.backgroundImage = images[numTour];
         createPieces(images[numTour]);
 
+        alert(numTour)
+        if (numTour == 10) {
+            fin()
+
+        }
         photo.onpointerdown = function (e) {
             console.log(photo.style.backgroundImage)
 
@@ -171,6 +173,28 @@ function testGrille() {
 
 
     }
+}
+
+function fin() {
+    console.log('fin')
+    document.getElementById("bravo").innerHTML = "BON ANNIVERSAIRE MON PETIT CACA !!! ";
+    let coul = 1
+    const couleurs = ["yellow", "black"]
+
+    function changerCouleur() {
+        coul = ~coul
+        if (coul == -2) {
+            coul = 0
+        }
+        if (coul == -1) {
+            coul = 1
+        }
+        console.log(coul)
+        document.getElementById("bravo").style.color = couleurs[coul]
+        setTimeout(changerCouleur, 500)
+    }
+    changerCouleur()
+
 }
 
 

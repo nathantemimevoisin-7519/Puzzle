@@ -94,3 +94,11 @@ button {
 #motSecret {
     letter-spacing: 0.4rem;
 }
+
+#bravo {
+    grid-column: 3;
+    grid-row: 2/5;
+    align-items: center;
+    font-size: 50px;
+    z-index: 500;
+}
