@@ -1,4 +1,17 @@
 import turtle as tlt
+tlt.fillcolor('antiquewhite')
+tlt.begin_fill()
+for i in range(4):
+    tlt.forward(300)
+    tlt.left(90)
+tlt.end_fill()
+tlt.up()
+tlt.forward(150)
+tlt.left(90)
+tlt.forward(50)
+tlt.right(90)
+
+tlt.down()
 tlt.color("black")
 tlt.width(5)
 tlt.fillcolor("peru")

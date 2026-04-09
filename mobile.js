@@ -10,10 +10,13 @@ const mot = "Bon anniversaire"
 let lettreAaffich = ["B", "o", "n", "a", "i", "v", "e", "r", "s"]
 let lettreDejAffich = [" "]
 
-images = ["url('lucienathan.jpg')", "url('lucienathan2.jpg')", "url('lucieCGenial2.jpg')", "url('lucieCGenial.jpg')", "url('logo.jpg')", "url('luciepdp.jpg')"]
+images = ["url('lucienathan.jpg')", "url('lucienathan2.jpg')", "url('lucieCoursLycee.jpg')", "url('lucieCGenial2.jpg')", "url('lucieCGenial.jpg')", "url('logo.jpg')", "url('luciepdp.jpg')"]
 let numTour = 0
 
 document.getElementById("testGrille").onclick = testGrille;
+
+
+
 
 //on créé les pièces
 function createPieces(nomImg) {
