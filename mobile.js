@@ -5,7 +5,6 @@ let pieces = [];
 let zCompteur = 0
 const snapX = 100//33.33
 const snapY = snapX
-let result = false
 
 const mot = "Bon anniversaire"
 let lettreAaffich = ["B", "o", "n", "a", "i", "v", "e", "r", "s"]
@@ -62,7 +61,7 @@ function createPieces(nomImg) {
 
                 puzzle.onpointerdown = function (e) {
                     console.log("test", { pieceT })
-                    if (pieceT != true) {
+                    if (pieceT !== true) {
                         let x = e.clientX
                         let y = e.clientY
                         //let shiftX = x + 80 - piece.getBoundingClientRect().left;
@@ -97,7 +96,7 @@ function testPiece(piece) {
     const y = Math.round((piece.style.top).substring(0, (piece.style.top).length - 3) / 100)
     const casE = x + 3 * y
     let bCase = 0
-    if (casE == i) {
+    if (casE === i) {
         bCase = 1
     }
     console.log('test', { i, x, y, casE, bCase })
@@ -108,14 +107,14 @@ function testPiece(piece) {
 
 function testGrille() {
     //fin()
-    pieces.every(function (p) { return testPiece(p); }) //const result = true;
+    const result = true// pieces.every(function (p) { return testPiece(p); })
     console.log('test', { result })
-    if (result == true) {
+    if (result) {
         alert("Vous avez réussi le puzzle !! Vous avez gagné une lettre du mot secret et une image pour votre collection !!");
         lettreDejAffich += lettreAaffich[numTour - 1];
         let motAffich = "";
         for (let j = 0; j < mot.length; j++) {
-            if (lettreDejAffich.indexOf(mot[j]) != -1) {
+            if (lettreDejAffich.indexOf(mot[j]) !== -1) {
                 motAffich += mot[j];
             }
             else {
@@ -132,10 +131,8 @@ function testGrille() {
         document.getElementById("puzzle").style.backgroundImage = images[numTour];
         createPieces(images[numTour]);
 
-        alert(numTour)
-        if (numTour == 10) {
+        if (numTour === 10) {
             fin()
-
         }
         photo.onpointerdown = function (e) {
             console.log(photo.style.backgroundImage)
@@ -146,8 +143,8 @@ function testGrille() {
 
             const ph = document.createElement("div");
             ph.classList.add("ph");
-            ph.style.width = '300px'
-            ph.style.height = '300px'
+            ph.style.width = '600px'
+            ph.style.height = '600px'
             //ph.style.backgroundColor = "grey"
             ph.style.backgroundImage = photo.style.backgroundImage
             document.getElementById("afficheIm").style.zIndex = 5683
@@ -159,7 +156,7 @@ function testGrille() {
 
             document.onpointerdown = function (e) {
                 console.log('ge', { photoT })
-                if (photoT != true) {
+                if (photoT !== true) {
                     //console.log('entree boucle')
                     document.getElementById("afficheIm").style.zIndex = -1
                     document.getElementById("afficheIm").removeChild(ph)
@@ -185,10 +182,10 @@ function fin() {
 
     function changerCouleur() {
         coul = ~coul
-        if (coul == -2) {
+        if (coul === -2) {
             coul = 0
         }
-        if (coul == -1) {
+        if (coul === -1) {
             coul = 1
         }
         console.log(coul)
