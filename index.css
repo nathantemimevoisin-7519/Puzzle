@@ -100,5 +100,5 @@ button {
     grid-row: 2/5;
     align-items: center;
     font-size: 50px;
-    z-index: 500;
+    z-index: -1;
 }

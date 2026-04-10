@@ -5,6 +5,7 @@ let pieces = [];
 let zCompteur = 0
 const snapX = 100//33.33
 const snapY = snapX
+let result = false
 
 const mot = "Bon anniversaire"
 let lettreAaffich = ["B", "o", "n", "a", "i", "v", "e", "r", "s"]
@@ -106,8 +107,8 @@ function testPiece(piece) {
 
 
 function testGrille() {
-    fin()
-    const result = true; //pieces.every(function (p) { return testPiece(p); })
+    //fin()
+    pieces.every(function (p) { return testPiece(p); }) //const result = true;
     console.log('test', { result })
     if (result == true) {
         alert("Vous avez réussi le puzzle !! Vous avez gagné une lettre du mot secret et une image pour votre collection !!");
@@ -177,6 +178,7 @@ function testGrille() {
 
 function fin() {
     console.log('fin')
+    document.getElementById("bravo").style.zIndex = 500
     document.getElementById("bravo").innerHTML = "BON ANNIVERSAIRE MON PETIT CACA !!! ";
     let coul = 1
     const couleurs = ["yellow", "black"]
