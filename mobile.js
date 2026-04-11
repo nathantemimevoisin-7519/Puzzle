@@ -34,6 +34,7 @@ function createPieces() {
         console.log("entreeBouclSupp", {a})
         puzzle.removeChild(a)
     }
+    pieces.splice(0);//clear array
     let i = 0
     for (let y = 0; y < size; y++) { //ligne
         for (let x = 0; x < size; x++) { //colonne
@@ -80,7 +81,7 @@ function createPieces() {
 
                         //console.log("puzzle1", { x, y, snapX, snapY })
                         x = Math.round((x) / snapX) * snapX
-                        y = Math.round((y) / snapY) * snapY
+                        y = Math.round((y-snapY/2) / snapY) * snapY
                         //console.log("puzzle2", { x, y })
                         piece.style.left = x - 100 + "px";
                         piece.style.top = y - 100 + "px";
@@ -105,8 +106,8 @@ initPuzzle();
 
 function testPiece(piece) {
     const i = +piece.getAttribute("data-index");
-    const x = Math.round((piece.style.left).substring(0, (piece.style.left).length - 3) / 100);
-    const y = Math.round((piece.style.top).substring(0, (piece.style.top).length - 3) / 100)
+    const x = Math.round((piece.style.left).substring(0, (piece.style.left).length - 2) / 100);
+    const y = Math.round((piece.style.top).substring(0, (piece.style.top).length - 2) / 100)
     const casE = x + 3 * y
     let bCase = 0
     if (casE === i) {
@@ -143,7 +144,7 @@ function initPuzzle() {
 
 function testGrille() {
     //fin()
-    const result = true// pieces.every(function (p) { return testPiece(p); })
+    const result = pieces.every(function (p) { return testPiece(p); })
     console.log('test', {result})
 
     if (result) {

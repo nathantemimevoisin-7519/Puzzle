@@ -56,6 +56,8 @@ body {
     background-color: gray;
     grid-column: 5;
     grid-row: 2/6;
+    overflow-y: auto;
+    height: 100%;
 }
 
 #titrePh {
