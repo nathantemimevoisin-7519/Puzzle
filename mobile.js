@@ -122,7 +122,7 @@ function montreImageOverlay(url) {
 
 function initPuzzle() {
     const nouvelleImage = images[numTour];
-    document.getElementById("puzzle").style["background-image"] = nouvelleImage;//`url(${nouvelleImage});`
+    document.getElementById("puzzle").style["background-image"] = `url(${nouvelleImage})`
     createPieces(nouvelleImage);
 
     if (numTour === 10) {
