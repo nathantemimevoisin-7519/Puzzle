@@ -137,7 +137,8 @@ function testGrille() {
 
         const photo = document.createElement("div");
         photo.classList.add("photo");
-        photo.style.backgroundImage = `url(${images[numTour - 1]})`
+        const nomImage = images[numTour - 1];
+        photo.style.backgroundImage = `url(${nomImage})`
         document.getElementById("photos").appendChild(photo);
 
         document.getElementById("puzzle").style.backgroundImage = `url(${images[numTour]});`
@@ -147,8 +148,8 @@ function testGrille() {
             fin()
         }
         photo.onpointerdown = function (e) {
-            console.log(photo.style.backgroundImage)
-            montreImageOverlay(photo.style.backgroundImage)
+            console.log(photo.style.backgroundImage + 'nomImage')
+            montreImageOverlay(nomImage)
             //
             //
             //
