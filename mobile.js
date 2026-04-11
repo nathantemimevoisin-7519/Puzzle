@@ -10,7 +10,17 @@ const mot = "Bon anniversaire"
 let lettreAaffich = ["B", "o", "n", "a", "i", "v", "e", "r", "s"]
 let lettreDejAffich = [" "]
 
-images = ["lucienathan.jpg", "lucienathan2.jpg", "lucieCoursLycee.jpg", "lucieCGenial2.jpg", "lucieCGenial.jpg", "logo.jpg", "luciepdp.jpg"]
+images = [
+    "lucienathan.jpg",
+    "lucienathan2.jpg",
+    "lucieCoursLycee.jpg",
+    "lucieCGenial2.jpg",
+    "lucieCGenial.jpg",
+    "logo.jpg",
+    "luciepdp.jpg",
+    "WhatsApp1.jpeg",
+    "WhatsApp2.jpeg",
+    "WhatsApp3.jpeg"];
 let numTour = 0
 
 document.getElementById("testGrille").onclick = testGrille;
@@ -21,11 +31,10 @@ function createPieces() {
     nomImg = images[numTour];
     const tab = [...puzzle.getElementsByClassName("piece")]
     for (a of tab) {
-        console.log("entreeBouclSupp", { a })
+        console.log("entreeBouclSupp", {a})
         puzzle.removeChild(a)
     }
     let i = 0
-    numTour += 1
     for (let y = 0; y < size; y++) { //ligne
         for (let x = 0; x < size; x++) { //colonne
             console.log(i)
@@ -44,8 +53,8 @@ function createPieces() {
             // Position mélangée
             piece.style.left = `${Math.random() * 200 + 300}px`;
             piece.style.top = `${Math.random() * 200}px`;
-            console.log('piece', { piece })
-            console.log('puzzle', { puzzle })
+            console.log('piece', {piece})
+            console.log('puzzle', {puzzle})
             document.getElementById("puzzle").onpointerdown = function (e) {
                 console.log('ooo')
             }
@@ -59,10 +68,10 @@ function createPieces() {
                 const y = e.clientY
                 //let shiftX = x + 80 - piece.getBoundingClientRect().left;
                 //let shiftY = y + 100 - piece.getBoundingClientRect().top;
-                console.log("piece", { x, y })
+                console.log("piece", {x, y})
 
                 puzzle.onpointerdown = function (e) {
-                    console.log("test", { pieceT })
+                    console.log("test", {pieceT})
                     if (pieceT !== true) {
                         let x = e.clientX
                         let y = e.clientY
@@ -90,6 +99,7 @@ function createPieces() {
         }
     }
 }
+
 createPieces()
 initPuzzle();
 
@@ -102,7 +112,7 @@ function testPiece(piece) {
     if (casE === i) {
         bCase = 1
     }
-    console.log('test', { i, x, y, casE, bCase })
+    console.log('test', {i, x, y, casE, bCase})
     return bCase
 
 }
@@ -114,8 +124,8 @@ function cacherOverlay() {
 function montreImageOverlay(url) {
     const overlay = document.getElementById('overlay')
     overlay.style.display = "flex"
-    overlay.getElementsByTagName("img")[0].src=url
-    console.log('TEST url',{url})
+    overlay.getElementsByTagName("img")[0].src = url
+    console.log('TEST url', {url})
 
 
 }
@@ -125,7 +135,7 @@ function initPuzzle() {
     document.getElementById("puzzle").style["background-image"] = `url(${nouvelleImage})`
     createPieces(nouvelleImage);
 
-    if (numTour === 10) {
+    if (numTour === 9) {
         fin()
     }
 }
@@ -134,17 +144,16 @@ function initPuzzle() {
 function testGrille() {
     //fin()
     const result = true// pieces.every(function (p) { return testPiece(p); })
-    console.log('test', { result })
+    console.log('test', {result})
 
     if (result) {
         alert("Vous avez réussi le puzzle !! Vous avez gagné une lettre du mot secret et une image pour votre collection !!");
-        lettreDejAffich += lettreAaffich[numTour - 1];
+        lettreDejAffich += lettreAaffich[numTour];
         let motAffich = "";
         for (let j = 0; j < mot.length; j++) {
             if (lettreDejAffich.indexOf(mot[j]) !== -1) {
                 motAffich += mot[j];
-            }
-            else {
+            } else {
                 motAffich += '_'
             }
         }
@@ -152,13 +161,14 @@ function testGrille() {
 
         const photo = document.createElement("div");
         photo.classList.add("photo");
-        const nomImage = images[numTour - 1];
+        const nomImage = images[numTour];
         photo.style.backgroundImage = `url(${nomImage})`
         document.getElementById("photos").appendChild(photo);
         photo.onpointerdown = function (e) {
-            console.log(photo.style.backgroundImage + 'nomImage')
             montreImageOverlay(nomImage)
         }
+
+        numTour += 1
         initPuzzle();
     }
 }
@@ -182,6 +192,7 @@ function fin() {
         document.getElementById("bravo").style.color = couleurs[coul]
         setTimeout(changerCouleur, 500)
     }
+
     changerCouleur()
 
 }
