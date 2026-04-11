@@ -17,7 +17,8 @@ document.getElementById("testGrille").onclick = testGrille;
 document.getElementById("overlay").onclick = cacherOverlay;
 
 //on créé les pièces
-function createPieces(nomImg) {
+function createPieces() {
+    nomImg = images[numTour];
     const tab = [...puzzle.getElementsByClassName("piece")]
     for (a of tab) {
         console.log("entreeBouclSupp", { a })
@@ -89,7 +90,8 @@ function createPieces(nomImg) {
         }
     }
 }
-createPieces(images[0])
+createPieces()
+initPuzzle();
 
 function testPiece(piece) {
     const i = +piece.getAttribute("data-index");
@@ -111,16 +113,29 @@ function cacherOverlay() {
 
 function montreImageOverlay(url) {
     const overlay = document.getElementById('overlay')
-    overlay.style.display = "block"
+    overlay.style.display = "flex"
     overlay.getElementsByTagName("img")[0].src=url
     console.log('TEST url',{url})
 
 
 }
+
+function initPuzzle() {
+    const nouvelleImage = images[numTour];
+    document.getElementById("puzzle").style["background-image"] = nouvelleImage;//`url(${nouvelleImage});`
+    createPieces(nouvelleImage);
+
+    if (numTour === 10) {
+        fin()
+    }
+}
+
+
 function testGrille() {
     //fin()
     const result = true// pieces.every(function (p) { return testPiece(p); })
     console.log('test', { result })
+
     if (result) {
         alert("Vous avez réussi le puzzle !! Vous avez gagné une lettre du mot secret et une image pour votre collection !!");
         lettreDejAffich += lettreAaffich[numTour - 1];
@@ -140,50 +155,11 @@ function testGrille() {
         const nomImage = images[numTour - 1];
         photo.style.backgroundImage = `url(${nomImage})`
         document.getElementById("photos").appendChild(photo);
-
-        document.getElementById("puzzle").style.backgroundImage = `url(${images[numTour]});`
-        createPieces(images[numTour]);
-
-        if (numTour === 10) {
-            fin()
-        }
         photo.onpointerdown = function (e) {
             console.log(photo.style.backgroundImage + 'nomImage')
             montreImageOverlay(nomImage)
-            //
-            //
-            //
-            // photo.style.border = "3px double"
-            // //photo.style.width = '200px'
-            // //photo.style.height = '200px'
-            //
-            // const ph = document.createElement("div
-            // ph.classList.add("ph");
-            // ph.style.width = '600px'
-            // ph.style.height = '600px'
-            // //ph.style.backgroundColor = "grey"
-            // ph.style.backgroundImage = photo.style.backgroundImage
-            // document.getElementById("afficheIm").style.zIndex = 5683
-            // document.getElementById("afficheIm").appendChild(ph);
-            //
-            // console.log("afficher", { ph })
-            //
-            // let photoT = true
-            //
-            // document.onpointerdown = function (e) {
-            //     console.log('ge', { photoT })
-            //     if (photoT !== true) {
-            //         //console.log('entree boucle')
-            //         document.getElementById("afficheIm").style.zIndex = -1
-            //         document.getElementById("afficheIm").removeChild(ph)
-            //         photo.style.border = "1px dotted"
-            //         photo.style.width = '100px'
-            //         photo.style.height = '100px'
-            //
-            //     }
-            //     photoT = false
-            // }
         }
+        initPuzzle();
     }
 }
 
