@@ -16,9 +16,9 @@ body {
     justify-content: center;
     align-items: center;
 }
-#overlay_img {
+
+#overlay img {
     width: 70vw;
-    background-image: url("lucienathan.jpg");
 }
 
 .piece {
