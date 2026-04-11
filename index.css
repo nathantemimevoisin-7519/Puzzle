@@ -6,6 +6,20 @@ body {
     background-image: url("cacaFondCreme.png");
 }
 
+#overlay {
+    z-index: 5362546732568743;
+    display: none;
+    background-color: rgba(131, 131, 131, 0.75);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#overlay_img {
+    width: 70vw;
+    background-image: url("lucienathan.jpg");
+}
 
 .piece {
     position: absolute;

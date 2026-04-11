@@ -10,10 +10,11 @@ const mot = "Bon anniversaire"
 let lettreAaffich = ["B", "o", "n", "a", "i", "v", "e", "r", "s"]
 let lettreDejAffich = [" "]
 
-images = ["url('lucienathan.jpg')", "url('lucienathan2.jpg')", "url('lucieCoursLycee.jpg')", "url('lucieCGenial2.jpg')", "url('lucieCGenial.jpg')", "url('logo.jpg')", "url('luciepdp.jpg')"]
+images = ["lucienathan.jpg", "lucienathan2.jpg", "lucieCoursLycee.jpg", "lucieCGenial2.jpg", "lucieCGenial.jpg", "logo.jpg", "luciepdp.jpg"]
 let numTour = 0
 
 document.getElementById("testGrille").onclick = testGrille;
+document.getElementById("overlay").onclick = cacherOverlay;
 
 //on créé les pièces
 function createPieces(nomImg) {
@@ -33,7 +34,7 @@ function createPieces(nomImg) {
             piece.setAttribute("data-index", i)
             i += 1
             // mettre bon endroit de l'image
-            piece.style.backgroundImage = (nomImg)
+            piece.style.backgroundImage = `url(${nomImg})`
             piece.style.backgroundPosition = `-${x * pieceSize}px -${y * pieceSize}px`;
 
             //forme pièce ==> à voir si on modifie plus tard
@@ -104,7 +105,18 @@ function testPiece(piece) {
 
 }
 
+function cacherOverlay() {
+    document.getElementById("overlay").style.display = "none"
+}
 
+function montreImageOverlay(url) {
+    const overlay = document.getElementById('overlay')
+    overlay.style.display = "block"
+    overlay.getElementsByTagName("img")[0].src=url
+    console.log('TEST url',{url})
+
+
+}
 function testGrille() {
     //fin()
     const result = true// pieces.every(function (p) { return testPiece(p); })
@@ -125,10 +137,10 @@ function testGrille() {
 
         const photo = document.createElement("div");
         photo.classList.add("photo");
-        photo.style.backgroundImage = (images[numTour - 1])
+        photo.style.backgroundImage = `url(${images[numTour - 1]})`
         document.getElementById("photos").appendChild(photo);
 
-        document.getElementById("puzzle").style.backgroundImage = images[numTour];
+        document.getElementById("puzzle").style.backgroundImage = `url(${images[numTour]});`
         createPieces(images[numTour]);
 
         if (numTour === 10) {
@@ -136,40 +148,41 @@ function testGrille() {
         }
         photo.onpointerdown = function (e) {
             console.log(photo.style.backgroundImage)
-
-            photo.style.border = "3px double"
-            //photo.style.width = '200px'
-            //photo.style.height = '200px'
-
-            const ph = document.createElement("div");
-            ph.classList.add("ph");
-            ph.style.width = '600px'
-            ph.style.height = '600px'
-            //ph.style.backgroundColor = "grey"
-            ph.style.backgroundImage = photo.style.backgroundImage
-            document.getElementById("afficheIm").style.zIndex = 5683
-            document.getElementById("afficheIm").appendChild(ph);
-
-            console.log("afficher", { ph })
-
-            let photoT = true
-
-            document.onpointerdown = function (e) {
-                console.log('ge', { photoT })
-                if (photoT !== true) {
-                    //console.log('entree boucle')
-                    document.getElementById("afficheIm").style.zIndex = -1
-                    document.getElementById("afficheIm").removeChild(ph)
-                    photo.style.border = "1px dotted"
-                    photo.style.width = '100px'
-                    photo.style.height = '100px'
-
-                }
-                photoT = false
-            }
+            montreImageOverlay(photo.style.backgroundImage)
+            //
+            //
+            //
+            // photo.style.border = "3px double"
+            // //photo.style.width = '200px'
+            // //photo.style.height = '200px'
+            //
+            // const ph = document.createElement("div
+            // ph.classList.add("ph");
+            // ph.style.width = '600px'
+            // ph.style.height = '600px'
+            // //ph.style.backgroundColor = "grey"
+            // ph.style.backgroundImage = photo.style.backgroundImage
+            // document.getElementById("afficheIm").style.zIndex = 5683
+            // document.getElementById("afficheIm").appendChild(ph);
+            //
+            // console.log("afficher", { ph })
+            //
+            // let photoT = true
+            //
+            // document.onpointerdown = function (e) {
+            //     console.log('ge', { photoT })
+            //     if (photoT !== true) {
+            //         //console.log('entree boucle')
+            //         document.getElementById("afficheIm").style.zIndex = -1
+            //         document.getElementById("afficheIm").removeChild(ph)
+            //         photo.style.border = "1px dotted"
+            //         photo.style.width = '100px'
+            //         photo.style.height = '100px'
+            //
+            //     }
+            //     photoT = false
+            // }
         }
-
-
     }
 }
 
